@@ -10,11 +10,12 @@ namespace BinaryTreeSearch
     {
         static void Main(string[] args)
         {
-            var tree = new Tree<int>();
-            tree.Add(5);
-            tree.Add(6);
-            tree.Add(4);
-            tree.Add(13);
+            var tree = new Tree<int, string>();
+            tree.Add(5, "asdf");
+            tree.Add(6, "asqwef");
+            tree.Add(4, null);
+            tree.Add(13, "rqw");
+            tree.Add(1, null);
             Console.WriteLine(tree.nodeCount);
             Console.ReadLine();
         }

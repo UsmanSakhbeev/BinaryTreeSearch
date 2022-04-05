@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 
 namespace BinaryTreeSearch
 {
-    public class Tree<TKey> where TKey : IComparable<TKey>
+    public class Tree<TKey, TValue> where TKey : IComparable<TKey>
     {
-        private Node<TKey> root;
+        private Node<TKey, TValue> root;
         public int nodeCount;
         
-        public void Add(TKey key)
+        public void Add(TKey key, TValue value)
         {
+            var node = new Node<TKey, TValue>(key, value);
             if (root == null)
             {
-                root = new Node<TKey>(key);
+                root = node;
                 nodeCount = 1;
                 return;
             }
 
-            Add(key, root);
+            Add(node, root);
         }
-        private void Add(TKey key, Node<TKey> current)
+        private void Add(Node<TKey, TValue> node,Node<TKey, TValue> current)
         {
-            var compare = key.CompareTo(current.Key);
+            var compare = node.Key.CompareTo(current.Key);
             if (compare == 0)
                 throw new ArgumentException("Element with this key is already exist");
 
@@ -32,26 +33,26 @@ namespace BinaryTreeSearch
             {
                 if (current.left == null)
                 {
-                    current.left = new Node<TKey>(key);
+                    current.left = node;
                     nodeCount++;
                     return;
                 }
                 else 
                 {                    
-                    Add(key, current.left);
+                    Add(node, current.left);
                 }                  
             }
             else if(compare >0)
             {
                 if(current.right == null)
                 {
-                    current.right = new Node<TKey>(key);
+                    current.right = node;
                     nodeCount++;
                     return;
                 }
                 else if(current.right != null)
                 {                    
-                    Add(key, current.right);
+                    Add(node, current.right);
                 }
             }
         }
