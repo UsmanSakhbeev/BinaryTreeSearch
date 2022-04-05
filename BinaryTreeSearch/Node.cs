@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace BinaryTreeSearch
 {
-    public class Node<TKey> where TKey : IComparable<TKey>
+    public class Node<TKey, TValue> where TKey : IComparable<TKey>
     {
         public TKey Key { get;}
-        public Node<TKey> left;
-        public Node<TKey> right; 
+        public TValue Value { get;}
 
-        public Node(TKey key)
+        public Node<TKey, TValue> left;
+        public Node<TKey, TValue> right;
+
+        public Node(TKey key, TValue value)
         {
             Key = key;
+            Value = value;
         }
     }
 }
